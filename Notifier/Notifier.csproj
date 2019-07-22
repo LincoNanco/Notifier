@@ -3,7 +3,6 @@
     <TargetFramework>netstandard2.0</TargetFramework>
     <PackageId>Notifier</PackageId>
     <AssemblyName>Notifier</AssemblyName>
-    <PackageTags></PackageTags>
     <Title>Notifier</Title>
     <Description>Notification pusher for .NET Core apps using SignalR.</Description>
     <Authors>Linco Ñanco</Authors>
