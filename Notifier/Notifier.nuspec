@@ -1,18 +1,18 @@
 <?xml version="1.0"?>
 <package >
   <metadata>
-    <id>Notifier</id>
-    <version>1.0.0</version>
-    <title>Notifier</title>
-    <authors>Linco Ñanco</authors>
-    <owners>Linco Ñanco</owners>
-    <licenseUrl>https://github.com/LincoNanco/Notifier/blob/master/LICENSE</licenseUrl>
-    <projectUrl>https://github.com/LincoNanco/Notifier</projectUrl>
+    <id>$id$</id>
+    <version>$version$</version>
+    <title>$title$</title>
+    <authors>$author$</authors>
+    <owners>$author$</owners>
+    <licenseUrl>https://github.com/LincoNanco/Notifier</licenseUrl>
+    <projectUrl>https://github.com/LincoNanco/Notifier/blob/master/LICENSE</projectUrl>
     <!-- <iconUrl>http://ICON_URL_HERE_OR_DELETE_THIS_LINE</iconUrl> -->
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>$description$</description>
-    <releaseNotes>Notification pusher for .NET Core apps using SignalR.</releaseNotes>
-    <copyright>Copyright 2019 Linco Ñanco</copyright>
-    <tags>notifications push signalr</tags>
+    <releaseNotes>First release.</releaseNotes>
+    <copyright>Copyright 2019</copyright>
+    <tags>notifications; signalr</tags>
   </metadata>
 </package>
