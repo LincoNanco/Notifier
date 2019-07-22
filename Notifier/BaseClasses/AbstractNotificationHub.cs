@@ -26,7 +26,7 @@ namespace Notifier.BaseClasses
             List<INotification> notifications = _stack.GetNotifications();
             foreach(INotification n in notifications)
             {
-                await Clients.Client(Context.ConnectionId).SendAsync("ReceiveNotification", n.GetMessage(), n);
+                await Clients.Client(Context.ConnectionId).SendAsync("NotificationHandler", n.GetMessage(), n);
             }
             _stack.ClearNotifications();
         }

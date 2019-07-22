@@ -1,6 +1,11 @@
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
+    <PackageId>Notifier</PackageId>
+    <PackageTags>Push Notifications; SignalR;</PackageTags>
+    <Title>Notifier</Title>
+    <Description>Notification pusher for .NET Core apps using SignalR.</Description>
+    <Authors>Linco Ñanco</Authors>
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="2.2.0"/>

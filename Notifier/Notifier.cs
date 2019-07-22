@@ -13,6 +13,14 @@ namespace Notifier
         readonly HttpContext _context;
         readonly INotificationStack _stack;
         readonly UserManager<TUser> _userManager;
+
+        /// <summary>
+        /// Sens notifications to users using a SignalR Hub that inherits from AbstractNotificationHub.
+        /// </summary>
+        /// <param name="accessor"></param>
+        /// <param name="hubContext"></param>
+        /// <param name="stack"></param>
+        /// <param name="userManager"></param>
         public Notifier(IHttpContextAccessor accessor, IHubContext<THub> hubContext, INotificationStack stack, UserManager<TUser> userManager)
         {
             _hubContext = hubContext;
@@ -31,7 +39,7 @@ namespace Notifier
             //If the request was made through AJAX, send the response inmediatly.
             if (_context.Request.Headers["X-Requested-With"] == "XMLHttpRequest")
             {
-                _hubContext.Clients.User(_userManager.GetUserId(principal)).SendAsync("ReceiveNotification", notification.GetMessage(), notification);
+                _hubContext.Clients.User(_userManager.GetUserId(principal)).SendAsync("NotificationHandler", notification.GetMessage(), notification);
             }
             else
             {
@@ -56,7 +64,7 @@ namespace Notifier
         /// <param name="notification"></param>
         public void NotifyGroup(string groupName, INotification notification)
         {
-            _hubContext.Clients.Group(groupName).SendAsync("ReceiveNotification", notification.GetMessage(), notification);
+            _hubContext.Clients.Group(groupName).SendAsync("NotificationHandler", notification.GetMessage(), notification);
         }
 
         /// <summary>
@@ -67,12 +75,17 @@ namespace Notifier
         /// <param name="notification"></param>
         public void NotifyGroupExcept(string groupName, IReadOnlyList<string> ConnectionIds, INotification notification)
         {
-            _hubContext.Clients.GroupExcept(groupName, ConnectionIds).SendAsync("ReceiveNotification", notification.GetMessage(), notification);
+            _hubContext.Clients.GroupExcept(groupName, ConnectionIds).SendAsync("NotificationHandler", notification.GetMessage(), notification);
         }
 
+        /// <summary>
+        /// Notifies a specific user based on its user id.
+        /// </summary>
+        /// <param name="userId"></param>
+        /// <param name="notification"></param>
         public void NotifyUser(string userId, INotification notification)
         {
-            _hubContext.Clients.User(userId).SendAsync("ReceiveNotification", notification.GetMessage(), notification);
+            _hubContext.Clients.User(userId).SendAsync("NotificationHandler", notification.GetMessage(), notification);
         }
     }
 }
