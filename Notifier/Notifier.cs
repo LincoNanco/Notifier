@@ -2,8 +2,8 @@ using Notifier.Interfaces;
 using Microsoft.AspNetCore.SignalR;
 using Microsoft.AspNetCore.Http;
 using System.Security.Claims;
-using Microsoft.AspNetCore.Identity;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Notifier
 {
@@ -12,7 +12,6 @@ namespace Notifier
         readonly IHubContext<THub> _hubContext;
         readonly HttpContext _context;
         readonly INotificationStack _stack;
-        readonly UserManager<TUser> _userManager;
 
         /// <summary>
         /// Sens notifications to users using a SignalR Hub that inherits from AbstractNotificationHub.
@@ -21,12 +20,11 @@ namespace Notifier
         /// <param name="hubContext"></param>
         /// <param name="stack"></param>
         /// <param name="userManager"></param>
-        public Notifier(IHttpContextAccessor accessor, IHubContext<THub> hubContext, INotificationStack stack, UserManager<TUser> userManager)
+        public Notifier(IHttpContextAccessor accessor, IHubContext<THub> hubContext, INotificationStack stack)
         {
             _hubContext = hubContext;
             _context = accessor.HttpContext;
             _stack = stack;
-            _userManager = userManager;
         }
 
         /// <summary>
@@ -39,7 +37,9 @@ namespace Notifier
             //If the request was made through AJAX, send the response inmediatly.
             if (_context.Request.Headers["X-Requested-With"] == "XMLHttpRequest")
             {
-                _hubContext.Clients.User(_userManager.GetUserId(principal)).SendAsync("NotificationHandler", notification.GetMessage(), notification);
+                _hubContext.Clients
+                .User(principal.Claims.FirstOrDefault(x => x.Type == "http://schemas.xmlsoap.org/ws/2005/05/identity/claims/nameidentifier")?.Value)
+                .SendAsync("NotificationHandler", notification.GetMessage(), notification);
             }
             else
             {
