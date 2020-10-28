@@ -12,11 +12,11 @@ namespace Notifier
         /// <summary>
         /// Adds the required services to the DI container.
         /// </summary>
-        public static IServiceCollection AddNotifier<THub, TUser>(this IServiceCollection services) where THub : AbstractNotificationHub<TUser> where TUser : class 
+        public static IServiceCollection AddNotifier<THub>(this IServiceCollection services) where THub : AbstractNotificationHub
         {
             //Add an implementation of IViewRenderService only if it is not already provided
             services.TryAddSingleton<IHttpContextAccessor, HttpContextAccessor>();
-            services.AddScoped<INotifier, Notifier<THub, TUser>>();
+            services.AddScoped<INotifier, Notifier<THub>>();
             return services;
         }
 

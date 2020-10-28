@@ -7,7 +7,7 @@ using System.Linq;
 
 namespace Notifier
 {
-    public class Notifier<THub,TUser> : INotifier where THub : Hub where TUser : class
+    public class Notifier<THub> : INotifier where THub : Hub
     {
         readonly IHubContext<THub> _hubContext;
         readonly HttpContext _context;

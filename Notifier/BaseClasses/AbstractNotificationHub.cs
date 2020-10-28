@@ -6,7 +6,7 @@ using Notifier.Interfaces;
 
 namespace Notifier.BaseClasses
 {
-    public abstract class AbstractNotificationHub<TUser> : Hub where TUser : class
+    public abstract class AbstractNotificationHub : Hub
     {
         INotifier _notifier;
         INotificationStack _stack;

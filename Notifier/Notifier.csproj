@@ -7,7 +7,7 @@
     <Description>Notification pusher for .NET Core apps using SignalR.</Description>
     <Authors>Linco Ñanco</Authors>
     <PackageTags>notifications; signalr</PackageTags>
-    <PackageVersion>1.0.1</PackageVersion>
+    <PackageVersion>1.0.2</PackageVersion>
     <PackageProjectUrl>https://github.com/LincoNanco/Notifier</PackageProjectUrl>
     <PackageLicenseUrl>https://github.com/LincoNanco/Notifier/blob/master/LICENSE</PackageLicenseUrl>
   </PropertyGroup>
